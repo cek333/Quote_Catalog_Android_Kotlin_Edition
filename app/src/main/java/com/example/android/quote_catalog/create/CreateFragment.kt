@@ -1,4 +1,4 @@
-package com.example.android.quote_catalog
+package com.example.android.quote_catalog.create
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
