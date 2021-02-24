@@ -1,12 +1,21 @@
 <resources>
     <string name="app_name">Quote Catalog</string>
-    <string name="action_settings">Settings</string>
+    <!-- Strings used for settings menu -->
+    <string name="menu_add_quote">Add Quote</string>
+    <string name="menu_enable_permissions">Enable Permissions</string>
+    <!-- Strings used for fragments -->
+    <string name="bg_select_text">Please select a background colour:</string>
+    <string name="color_select_text">Please select  the text colour:</string>
+    <string name="create_intro">Enter your quote below:</string>
+    <string name="create_bg_colour">Background Colour:</string>
+    <string name="create_txt_colour">Text Colour:</string>
+    <string name="create_hint">Enter your quote</string>
+    <string name="create_save">Save Quote</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">Browse Quotes</string>
-    <string name="second_fragment_label">Create Quote</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="browse_fragment_label">Browse Quotes</string>
+    <string name="create_fragment_label">Create Quote</string>
+    <string name="browse_intro">Browse Quotes, Search Quotes, and\nAdd (+) Quotes</string>
+    <string name="browse_search_hint">Search Quotes</string>
+    <string name="browse_btn_search">Search</string>
+    <string name="browse_btn_clear">Clear</string>
 </resources>

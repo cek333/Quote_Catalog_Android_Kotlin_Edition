@@ -1,3 +1,11 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="selectMarginTop">16dp</dimen>
+    <dimen name="generalMarginStart">16dp</dimen>
+    <dimen name="generalMarginEnd">16dp</dimen>
+    <dimen name="titleTextSize">16sp</dimen>
+    <dimen name="chipSpacingHorizontal">36dp</dimen>
+    <dimen name="chipSpacingVertical">36dp</dimen>
+    <dimen name="quoteTextSize">30sp</dimen>
+    <dimen name="iconPadding">0dp</dimen>
 </resources>
