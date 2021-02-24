@@ -1,19 +1,22 @@
 package com.example.android.quote_catalog.create
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.quote_catalog.*
 import com.example.android.quote_catalog.databinding.FragmentCreateBinding
+import com.example.android.quote_catalog.store.QuoteDatabase
 
 class CreateFragment : Fragment() {
 
   private lateinit var binding: FragmentCreateBinding
+  private lateinit var createViewModel: CreateFragmentViewModel
   private var currentBgColor = DEFAULT_BG_COLOR
   private var currentTxtColor = DEFAULT_TXT_COLOR
 
@@ -24,6 +27,13 @@ class CreateFragment : Fragment() {
     // Inflate the layout for this fragment
     binding = DataBindingUtil.inflate<FragmentCreateBinding>(inflater,
       R.layout.fragment_create, container, false)
+
+    // Instantiate ViewModel
+    val application = requireNotNull(this.activity).application
+    val dataSource = QuoteDatabase.getInstance(application).quoteDatabaseDao
+    val createViewModelFactory = CreateFragmentViewModelFactory(dataSource, application)
+    createViewModel =
+      ViewModelProvider(this, createViewModelFactory).get(CreateFragmentViewModel::class.java)
 
     return binding.root
   }
@@ -45,13 +55,14 @@ class CreateFragment : Fragment() {
       // Log.i("CreateFragment", "bg color:${currentBgColor.toString()}")
       // Log.i("CreateFragment", "txt color:${currentTxtColor.toString()}")
       // Configure colours for quote box
-      currentBgColor?.let { quoteText.setBackgroundColor(it) }
-      currentTxtColor?.let { quoteText.setTextColor(it) }
-      currentQuoteTxt?.let { quoteText.setText(it) }
+      quoteText.setBackgroundColor(currentBgColor)
+      quoteText.setTextColor(currentTxtColor)
+      quoteText.setText(currentQuoteTxt)
 
       // Attach listener to Save button
       createSave.setOnClickListener {
-        Log.i("CreateFragment", "quote:${quoteText.text.toString()}")
+        createViewModel.insert(quoteText.text.toString(), currentBgColor, currentTxtColor)
+        Toast.makeText(context, getString(R.string.quote_stored), Toast.LENGTH_LONG).show()
       }
 
       // Attach listeners to colour pickers

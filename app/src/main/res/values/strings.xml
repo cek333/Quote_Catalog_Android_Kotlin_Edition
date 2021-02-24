@@ -18,4 +18,5 @@
     <string name="browse_search_hint">Search Quotes</string>
     <string name="browse_btn_search">Search</string>
     <string name="browse_btn_clear">Clear</string>
+    <string name="quote_stored">Quote Saved</string>
 </resources>
