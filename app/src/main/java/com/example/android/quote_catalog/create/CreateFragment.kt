@@ -5,18 +5,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.android.quote_catalog.DEFAULT_BG_COLOR
-import com.example.android.quote_catalog.DEFAULT_TXT_COLOR
-import com.example.android.quote_catalog.R
+import com.example.android.quote_catalog.*
 import com.example.android.quote_catalog.databinding.FragmentCreateBinding
 
 class CreateFragment : Fragment() {
 
   private lateinit var binding: FragmentCreateBinding
+  private var currentBgColor = DEFAULT_BG_COLOR
+  private var currentTxtColor = DEFAULT_TXT_COLOR
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
@@ -32,20 +31,23 @@ class CreateFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    val currentBgColor = arguments?.getString("SelectedBgColor")?.toInt() ?: DEFAULT_BG_COLOR
+    currentBgColor = arguments?.getInt(BUNDLE_BG_COLOR) ?: currentBgColor
     // Apply color to button
     binding.createBgColorSelect.setBackgroundColor(currentBgColor)
 
-    val currentTxtColor = arguments?.getString("SelectedTxtColor")?.toInt() ?: DEFAULT_TXT_COLOR
+    currentTxtColor = arguments?.getInt(BUNDLE_TXT_COLOR) ?: currentTxtColor
     // Apply color to button
     binding.createTxtColorSelect.setBackgroundColor(currentTxtColor)
 
+    val currentQuoteTxt = arguments?.getString(BUNDLE_QUOTE_TXT) ?: ""
+
     binding.apply {
-      Log.i("CreateFragment", "bg color:${currentBgColor.toString()}")
-      Log.i("CreateFragment", "txt color:${currentTxtColor.toString()}")
+      // Log.i("CreateFragment", "bg color:${currentBgColor.toString()}")
+      // Log.i("CreateFragment", "txt color:${currentTxtColor.toString()}")
       // Configure colours for quote box
       currentBgColor?.let { quoteText.setBackgroundColor(it) }
       currentTxtColor?.let { quoteText.setTextColor(it) }
+      currentQuoteTxt?.let { quoteText.setText(it) }
 
       // Attach listener to Save button
       createSave.setOnClickListener {
@@ -54,14 +56,22 @@ class CreateFragment : Fragment() {
 
       // Attach listeners to colour pickers
       createBgColorSelect.setOnClickListener {
-        val bundle = bundleOf("CurrentBgColor" to currentBgColor.toString())
-        findNavController().navigate(R.id.action_CreateFragment_to_BgColorFragment, bundle)
+        findNavController().navigate(R.id.action_CreateFragment_to_BgColorFragment, createBundle())
       }
 
       createTxtColorSelect.setOnClickListener {
-        val bundle = bundleOf("CurrentTxtColor" to currentTxtColor.toString())
-        findNavController().navigate(R.id.action_CreateFragment_to_TxtColorFragment, bundle)
+        findNavController().navigate(R.id.action_CreateFragment_to_TxtColorFragment, createBundle())
       }
     }
+  }
+
+  private fun createBundle() : Bundle {
+    val localBundle = Bundle()
+    localBundle.apply {
+      putInt(BUNDLE_BG_COLOR, currentBgColor)
+      putInt(BUNDLE_TXT_COLOR, currentTxtColor)
+      putString(BUNDLE_QUOTE_TXT, binding.quoteText.text.toString())
+    }
+    return localBundle
   }
 }

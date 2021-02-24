@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.core.view.iterator
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.android.quote_catalog.BUNDLE_BG_COLOR
 import com.example.android.quote_catalog.DEFAULT_BG_COLOR
 import com.example.android.quote_catalog.R
 import com.example.android.quote_catalog.databinding.FragmentBgColorBinding
@@ -30,7 +30,10 @@ class BgColorFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    val currentBgColor : Int = arguments?.getString("CurrentBgColor")?.toInt() ?: DEFAULT_BG_COLOR
+    val localBundle = Bundle(arguments)
+    var currentBgColor = DEFAULT_BG_COLOR
+
+    currentBgColor = localBundle.getInt(BUNDLE_BG_COLOR) ?: currentBgColor
 
     // Select the chip that corresponds to currentBgColor
     for (view in binding.bgColors) {
@@ -40,15 +43,14 @@ class BgColorFragment : Fragment() {
         break
       }
     }
-    // Log.i("BgColorFragment", "incoming arguments: ${arguments?.toString()}")
 
     // Setup listener for chipgroup
     binding.bgColors.setOnCheckedChangeListener { group, checkedId ->
       // Select the chip that corresponds to currentBgColor
       val selectedChip = getView()?.findViewById<Chip>(checkedId) as Chip
-      val selectedColor = selectedChip.chipBackgroundColor?.defaultColor
-      val bundle = bundleOf("SelectedBgColor" to selectedColor.toString())
-      findNavController().navigate(R.id.action_BgColorFragment_to_CreateFragment, bundle)
+      val selectedColor = selectedChip.chipBackgroundColor?.defaultColor ?: DEFAULT_BG_COLOR
+      localBundle.putInt(BUNDLE_BG_COLOR, selectedColor)
+      findNavController().navigate(R.id.action_BgColorFragment_to_CreateFragment, localBundle)
     }
   }
 }
