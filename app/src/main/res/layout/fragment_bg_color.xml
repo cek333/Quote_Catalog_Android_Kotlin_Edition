@@ -22,12 +22,15 @@
             android:textSize="@dimen/titleTextSize" />
 
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/bg_colors"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/selectMarginTop"
             android:paddingStart="@dimen/generalMarginStart"
             app:chipSpacingHorizontal="@dimen/chipSpacingHorizontal"
-            app:chipSpacingVertical="@dimen/chipSpacingVertical">
+            app:chipSpacingVertical="@dimen/chipSpacingVertical"
+            app:selectionRequired="true"
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/red_100"

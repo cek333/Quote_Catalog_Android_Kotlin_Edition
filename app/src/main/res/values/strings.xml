@@ -7,14 +7,14 @@
     <string name="bg_select_text">Please select a background colour:</string>
     <string name="color_select_text">Please select  the text colour:</string>
     <string name="create_intro">Enter your quote below:</string>
-    <string name="create_bg_colour">Background Colour:</string>
-    <string name="create_txt_colour">Text Colour:</string>
+    <string name="create_bg_color">Change Background Colour:</string>
+    <string name="create_txt_color">Change Text Colour:</string>
     <string name="create_hint">Enter your quote</string>
     <string name="create_save">Save Quote</string>
     <!-- Strings used for fragments for navigation -->
     <string name="browse_fragment_label">Browse Quotes</string>
     <string name="create_fragment_label">Create Quote</string>
-    <string name="browse_intro">Browse Quotes, Search Quotes, and\nAdd (+) Quotes</string>
+    <string name="browse_intro">Browse Quotes, Search Quotes,\nand Add (+) Quotes</string>
     <string name="browse_search_hint">Search Quotes</string>
     <string name="browse_btn_search">Search</string>
     <string name="browse_btn_clear">Clear</string>

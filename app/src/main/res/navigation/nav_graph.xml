@@ -19,5 +19,30 @@
         android:id="@+id/CreateFragment"
         android:name="com.example.android.quote_catalog.create.CreateFragment"
         android:label="@string/create_fragment_label"
-        tools:layout="@layout/fragment_create"/>
+        tools:layout="@layout/fragment_create">
+        <action
+            android:id="@+id/action_CreateFragment_to_BgColorFragment"
+            app:destination="@id/BgColorFragment" />
+        <action
+            android:id="@+id/action_CreateFragment_to_TxtColorFragment"
+            app:destination="@id/TxtColorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/BgColorFragment"
+        android:name="com.example.android.quote_catalog.create.BgColorFragment"
+        android:label="BgColorFragment"
+        tools:layout="@layout/fragment_bg_color" >
+        <action
+            android:id="@+id/action_BgColorFragment_to_CreateFragment"
+            app:destination="@id/CreateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/TxtColorFragment"
+        android:name="com.example.android.quote_catalog.create.TxtColorFragment"
+        android:label="TxtColorFragment"
+        tools:layout="@layout/fragment_txt_color" >
+        <action
+            android:id="@+id/action_TxtColorFragment_to_CreateFragment"
+            app:destination="@id/CreateFragment" />
+    </fragment>
 </navigation>

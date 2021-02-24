@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/grey_300"
@@ -20,42 +20,48 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/create_bg_colour"
+            android:id="@+id/create_bg_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
-            android:text="@string/create_bg_colour"
+            android:text="@string/create_bg_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/create_intro" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/create_bg_colour_select"
+        <ImageButton
+            android:id="@+id/create_bg_color_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintStart_toEndOf="@+id/create_bg_colour"
-            app:layout_constraintTop_toBottomOf="@+id/create_intro" />
+            android:layout_marginTop="24dp"
+            android:background="@color/white"
+            android:contentDescription="@string/create_bg_color"
+            app:layout_constraintStart_toEndOf="@+id/create_bg_color"
+            app:layout_constraintTop_toBottomOf="@+id/create_intro"
+            app:srcCompat="@drawable/ic_transparent_box" />
 
         <TextView
-            android:id="@+id/create_txt_colour"
+            android:id="@+id/create_txt_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
-            android:text="@string/create_txt_colour"
+            android:text="@string/create_txt_color"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_bg_colour" />
+            app:layout_constraintTop_toBottomOf="@+id/create_bg_color" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/create_txt_colour_select"
+        <ImageButton
+            android:id="@+id/create_txt_color_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toEndOf="@+id/create_txt_colour"
-            app:layout_constraintTop_toBottomOf="@+id/create_bg_colour" />
+            android:layout_marginTop="24dp"
+            android:background="@color/black"
+            android:contentDescription="@string/create_txt_color"
+            app:layout_constraintStart_toEndOf="@+id/create_txt_color"
+            app:layout_constraintTop_toBottomOf="@+id/create_bg_color"
+            app:srcCompat="@drawable/ic_transparent_box" />
 
         <EditText
             android:id="@+id/quote_text"
@@ -71,7 +77,7 @@
             android:textSize="@dimen/quoteTextSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_txt_colour_select" />
+            app:layout_constraintTop_toBottomOf="@+id/create_txt_color_select" />
 
         <Button
             android:id="@+id/create_save"
