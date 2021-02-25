@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.quote_catalog.R
 import com.example.android.quote_catalog.databinding.FragmentBrowseBinding
+import com.example.android.quote_catalog.store.QuoteDatabase
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -16,6 +19,7 @@ import com.example.android.quote_catalog.databinding.FragmentBrowseBinding
 class BrowseFragment : Fragment() {
 
   private lateinit var binding: FragmentBrowseBinding
+  private lateinit var browseViewModel: BrowseFragmentViewModel
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
@@ -25,10 +29,19 @@ class BrowseFragment : Fragment() {
     binding = DataBindingUtil.inflate<FragmentBrowseBinding>(inflater,
       R.layout.fragment_browse, container, false)
 
-//    binding.browseBtnAddQuote.setOnClickListener { view ->
-//      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//        .setAction("Action", null).show()
-//    }
+    // Instantiate ViewModel
+    val application = requireNotNull(this.activity).application
+    val dataSource = QuoteDatabase.getInstance(application).quoteDatabaseDao
+    val browseViewModelFactory = BrowseFragmentViewModelFactory(dataSource, application)
+    browseViewModel =
+      ViewModelProvider(this, browseViewModelFactory).get(BrowseFragmentViewModel::class.java)
+
+    val adapter = QuoteAdapter()
+    binding.quoteList.adapter = adapter
+
+    browseViewModel.quotes.observe(viewLifecycleOwner, Observer {
+      it?.let { adapter.submitList(it) }
+    })
 
     return binding.root
   }

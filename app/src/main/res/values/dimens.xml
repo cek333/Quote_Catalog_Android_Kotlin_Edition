@@ -7,4 +7,6 @@
     <dimen name="chipSpacingVertical">36dp</dimen>
     <dimen name="quoteTextSize">30sp</dimen>
     <dimen name="iconPadding">0dp</dimen>
+    <dimen name="icon_dimens">50dp</dimen>
+    <dimen name="quoteListIconMargin">32dp</dimen>
 </resources>

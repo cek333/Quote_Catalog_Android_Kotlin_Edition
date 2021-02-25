@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/quote_text_from_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/selectMarginTop"
+            android:ems="@integer/quote_ems"
+            android:gravity="center"
+            android:lines="@integer/quote_lines"
+            android:maxEms="@integer/quote_ems"
+            android:textAlignment="center"
+            android:textSize="@dimen/quoteTextSize"
+            tools:text="Quote from DB" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/quoteListIconMargin"
+            android:paddingEnd="@dimen/quoteListIconMargin">
+
+            <ImageButton
+                android:id="@+id/quote_download"
+                android:layout_width="@dimen/icon_dimens"
+                android:layout_height="@dimen/icon_dimens"
+                android:layout_gravity="top|left"
+                app:srcCompat="@android:drawable/stat_sys_download" />
+
+            <ImageButton
+                android:id="@+id/quote_share"
+                android:layout_width="@dimen/icon_dimens"
+                android:layout_height="@dimen/icon_dimens"
+                android:layout_gravity="center|top"
+                app:srcCompat="@android:drawable/ic_menu_share" />
+
+            <ImageButton
+                android:id="@+id/quote_delete"
+                android:layout_width="@dimen/icon_dimens"
+                android:layout_height="@dimen/icon_dimens"
+                android:layout_gravity="right|top"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>
