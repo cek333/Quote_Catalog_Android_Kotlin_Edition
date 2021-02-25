@@ -19,4 +19,10 @@
     <string name="browse_btn_search">Search</string>
     <string name="browse_btn_clear">Clear</string>
     <string name="quote_stored">Quote Saved</string>
+    <!-- Permissions warning -->
+    <string name="permissions_warning">
+        To enable the Download and Share\nfeatures, select \'Enable Permissions\'\nfrom the Settings menu
+    </string>
+    <string name="permissions_confirmation">Permissions already enabled</string>
+    <string name="permissions_success">Permissions enabled</string>
 </resources>
