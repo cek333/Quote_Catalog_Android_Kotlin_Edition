@@ -1,27 +1,36 @@
 package com.example.android.quote_catalog.browse
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
+import com.example.android.quote_catalog.store.Quote
 import com.example.android.quote_catalog.store.QuoteDatabaseDao
+import kotlinx.coroutines.launch
 
 class BrowseFragmentViewModel(private val database: QuoteDatabaseDao,
                               application: Application) : AndroidViewModel(application) {
-//  private val _quotes = MutableLiveData<List<Quote>>()
-//  val quotes: LiveData<List<Quote>>
-//    get() = _quotes
 
-  val quotes = database.getAllQuotes()
-//  init {
-//    getAllQuotes()
-//  }
+  private val _filter = MutableLiveData<String?>()
+  val quotes : LiveData<List<Quote>> = Transformations.switchMap(_filter) {
+    if (it == null) database.getAllQuotes() else database.queryQuotes("%$it%")
+  }
 
-//  fun getAllQuotes() {
-//    viewModelScope.launch {
-//      _quotes.value = database.getAllQuotes()
-//    }
-//  }
+  init {
+    _filter.value = null
+  }
+
+  fun setQuoteFilter(query: String) {
+    _filter.value = query
+  }
+
+  fun clearQuoteFilter() {
+    _filter.value = null
+  }
+
+  fun deleteQuote(quote: Quote) {
+    viewModelScope.launch {
+      database.delete(quote)
+    }
+  }
 }
 
 class BrowseFragmentViewModelFactory(

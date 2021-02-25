@@ -52,5 +52,17 @@ class BrowseFragment : Fragment() {
     binding.browseBtnAddQuote.setOnClickListener {
       findNavController().navigate(R.id.action_BrowseFragment_to_CreateFragment)
     }
+
+    binding.browseBtnSearch.setOnClickListener {
+      val query = binding.browseSearchTerm.text.toString().trim()
+      if (query != "") {
+        browseViewModel.setQuoteFilter(query)
+      }
+    }
+
+    binding.browseBtnClearSearch.setOnClickListener {
+      binding.browseSearchTerm.setText("")
+      browseViewModel.clearQuoteFilter()
+    }
   }
 }
