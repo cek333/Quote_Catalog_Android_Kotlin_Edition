@@ -61,6 +61,9 @@ class CreateFragment : Fragment() {
 
       // Attach listener to Save button
       createSave.setOnClickListener {
+        // Hide the keyboard
+        hideKeyboardFrom(requireActivity(), quoteText)
+        // Insert quote into database
         createViewModel.insert(quoteText.text.toString(), currentBgColor, currentTxtColor)
         Toast.makeText(context, getString(R.string.quote_stored), Toast.LENGTH_LONG).show()
       }

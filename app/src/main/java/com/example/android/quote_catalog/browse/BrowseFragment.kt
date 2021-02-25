@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.quote_catalog.R
 import com.example.android.quote_catalog.databinding.FragmentBrowseBinding
+import com.example.android.quote_catalog.hideKeyboardFrom
 import com.example.android.quote_catalog.store.QuoteDatabase
 
 /**
@@ -54,6 +55,9 @@ class BrowseFragment : Fragment() {
     }
 
     binding.browseBtnSearch.setOnClickListener {
+      // Hide the keyboard
+      hideKeyboardFrom(requireActivity(), binding.browseSearchTerm)
+
       val query = binding.browseSearchTerm.text.toString().trim()
       if (query != "") {
         browseViewModel.setQuoteFilter(query)
