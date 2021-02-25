@@ -3,10 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.android.quote_catalog.MainActivity">
     <item
-        android:id="@+id/menu_add_quote"
-        android:title="@string/menu_add_quote"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/menu_enable_permissions"
         android:title="@string/menu_enable_permissions" />
 </menu>
