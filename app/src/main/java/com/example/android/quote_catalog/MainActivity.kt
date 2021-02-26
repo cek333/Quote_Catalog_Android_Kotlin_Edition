@@ -19,14 +19,21 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-    // setSupportActionBar(findViewById(R.id.toolbar))
 
     val navHostFragment =
       supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
     val navController = navHostFragment.navController
     val appBarConfiguration = AppBarConfiguration(navController.graph)
     val toolbar = findViewById<Toolbar>(R.id.toolbar)
+    // Designate the Toolbar as the ActionBar
+    //  Must call setSupportActionBar() before attaching navController
+    setSupportActionBar(toolbar)
     NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration)
+
+    // To investigate: Why does the following not work?
+    // Compare to https://developer.android.com/codelabs/android-navigation#0
+    // setupActionBarWithNavController() is an extension function defined in androidx.navigation.ui
+    // setupActionBarWithNavController(navController, appBarConfiguration)
 
     // Register the permissions callback, which handles the user's response to the
     // system permissions dialog.
@@ -50,6 +57,10 @@ class MainActivity : AppCompatActivity() {
             }
       }
   }
+
+  // override fun onNavigateUp(): Boolean {
+  //   return navController.navigateUp(appBarConfiguration)
+  // }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
     // Inflate the menu; this adds items to the action bar if it is present.
