@@ -1,9 +1,7 @@
 package com.example.android.quote_catalog.browse
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -40,6 +38,9 @@ class BrowseFragment : Fragment() {
     val adapter = QuoteAdapter(BrowseEventHandler(requireActivity(), browseViewModel))
     binding.quoteList.adapter = adapter
 
+    // Enable settings menu or this fragment
+    setHasOptionsMenu(true)
+
     browseViewModel.quotes.observe(viewLifecycleOwner, Observer {
       it?.let { adapter.submitList(it) }
     })
@@ -68,5 +69,10 @@ class BrowseFragment : Fragment() {
       binding.browseSearchTerm.setText("")
       browseViewModel.clearQuoteFilter()
     }
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    super.onCreateOptionsMenu(menu, inflater)
+    inflater.inflate(R.menu.browse_menu, menu)
   }
 }

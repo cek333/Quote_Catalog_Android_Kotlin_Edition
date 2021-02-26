@@ -1,13 +1,13 @@
 package com.example.android.quote_catalog
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -15,6 +15,7 @@ import androidx.navigation.ui.NavigationUI
 class MainActivity : AppCompatActivity() {
 
   private lateinit var requestPermissionLauncher : ActivityResultLauncher<Array<String>>
+  private lateinit var navController: NavController
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     val navHostFragment =
       supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-    val navController = navHostFragment.navController
+    navController = navHostFragment.navController
     val appBarConfiguration = AppBarConfiguration(navController.graph)
     val toolbar = findViewById<Toolbar>(R.id.toolbar)
     // Designate the Toolbar as the ActionBar
@@ -58,22 +59,23 @@ class MainActivity : AppCompatActivity() {
       }
   }
 
-  // override fun onNavigateUp(): Boolean {
-  //   return navController.navigateUp(appBarConfiguration)
-  // }
+//   override fun onNavigateUp(): Boolean {
+//     return navController.navigateUp(appBarConfiguration)
+//   }
 
-  override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    menuInflater.inflate(R.menu.menu_main, menu)
-    return true
-  }
+//  override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//    // Inflate the menu; this adds items to the action bar if it is present.
+//    menuInflater.inflate(R.menu.menu_main, menu)
+//    return true
+//  }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     // Handle action bar item clicks here. The action bar will
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
-    return when (item.itemId) {
-      R.id.menu_enable_permissions -> {
+    return when {
+      NavigationUI.onNavDestinationSelected(item, navController) -> true
+      item.itemId == R.id.menu_enable_permissions -> {
         requestPermissionsIfNecessary()
         true
       }

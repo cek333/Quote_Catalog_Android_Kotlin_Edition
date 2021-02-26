@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_enable_permissions"
+        android:title="@string/menu_enable_permissions" />
+    <item
+        android:id="@+id/CreateFragment"
+        android:title="@string/create_fragment_label" />
+</menu>
