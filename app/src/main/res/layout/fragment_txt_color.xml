@@ -13,13 +13,13 @@
         android:paddingEnd="@dimen/generalMarginEnd"
         tools:context=".create.TxtColorFragment">
 
-        <TextView
-            android:id="@+id/colorSelectText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/color_select_text"
-            android:textColor="@color/black"
-            android:textSize="@dimen/titleTextSize" />
+<!--        <TextView-->
+<!--            android:id="@+id/colorSelectText"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/color_select_text"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="@dimen/titleTextSize" />-->
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/txt_colors"

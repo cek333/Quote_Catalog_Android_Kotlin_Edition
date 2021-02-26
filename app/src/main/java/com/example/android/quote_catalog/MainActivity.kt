@@ -7,6 +7,10 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +19,14 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-    setSupportActionBar(findViewById(R.id.toolbar))
+    // setSupportActionBar(findViewById(R.id.toolbar))
+
+    val navHostFragment =
+      supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+    val navController = navHostFragment.navController
+    val appBarConfiguration = AppBarConfiguration(navController.graph)
+    val toolbar = findViewById<Toolbar>(R.id.toolbar)
+    NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration)
 
     // Register the permissions callback, which handles the user's response to the
     // system permissions dialog.

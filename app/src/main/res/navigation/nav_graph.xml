@@ -30,19 +30,21 @@
     <fragment
         android:id="@+id/BgColorFragment"
         android:name="com.example.android.quote_catalog.create.BgColorFragment"
-        android:label="BgColorFragment"
-        tools:layout="@layout/fragment_bg_color" >
+        android:label="@string/bg_color_fragment_label"
+        tools:layout="@layout/fragment_bg_color">
         <action
             android:id="@+id/action_BgColorFragment_to_CreateFragment"
-            app:destination="@id/CreateFragment" />
+            app:destination="@id/CreateFragment"
+            app:popUpTo="@id/BrowseFragment" />
     </fragment>
     <fragment
         android:id="@+id/TxtColorFragment"
         android:name="com.example.android.quote_catalog.create.TxtColorFragment"
-        android:label="TxtColorFragment"
-        tools:layout="@layout/fragment_txt_color" >
+        android:label="@string/txt_color_fragment_label"
+        tools:layout="@layout/fragment_txt_color">
         <action
             android:id="@+id/action_TxtColorFragment_to_CreateFragment"
-            app:destination="@id/CreateFragment" />
+            app:destination="@id/CreateFragment"
+            app:popUpTo="@id/BrowseFragment" />
     </fragment>
 </navigation>

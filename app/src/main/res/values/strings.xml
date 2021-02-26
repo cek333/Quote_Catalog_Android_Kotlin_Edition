@@ -14,6 +14,9 @@
     <!-- Strings used for fragments for navigation -->
     <string name="browse_fragment_label">Browse Quotes</string>
     <string name="create_fragment_label">Create Quote</string>
+    <string name="bg_color_fragment_label">Select Background Colour</string>
+    <string name="txt_color_fragment_label">Select Text Color</string>
+    <!-- Strings for Fragments -->
     <string name="browse_intro">Browse Quotes, Search Quotes,\nand Add (+) Quotes</string>
     <string name="browse_search_hint">Search Quotes</string>
     <string name="browse_btn_search">Search</string>
