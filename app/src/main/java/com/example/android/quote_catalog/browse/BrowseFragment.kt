@@ -37,7 +37,7 @@ class BrowseFragment : Fragment() {
     browseViewModel =
       ViewModelProvider(this, browseViewModelFactory).get(BrowseFragmentViewModel::class.java)
 
-    val adapter = QuoteAdapter()
+    val adapter = QuoteAdapter(BrowseEventHandler(requireActivity(), browseViewModel))
     binding.quoteList.adapter = adapter
 
     browseViewModel.quotes.observe(viewLifecycleOwner, Observer {

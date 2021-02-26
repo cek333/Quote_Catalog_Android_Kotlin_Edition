@@ -25,4 +25,10 @@
     </string>
     <string name="permissions_confirmation">Permissions already enabled</string>
     <string name="permissions_success">Permissions enabled</string>
+    <!-- Event handler status messages -->
+    <string name="status_downloaded">Image Downloaded</string>
+    <string name="status_shared">Image Shared</string>
+    <string name="status_exists">Image already exists</string>
+    <string name="status_no_permissions">Permissions not enabled</string>
+    <string name="status_error">Operation not completed</string>
 </resources>

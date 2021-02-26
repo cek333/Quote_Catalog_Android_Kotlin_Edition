@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.quote_catalog.databinding.QuoteItemViewBinding
 import com.example.android.quote_catalog.store.Quote
 
-class QuoteAdapter : ListAdapter<Quote, QuoteAdapter.ViewHolder>(QuoteDiffCallback()) {
+class QuoteAdapter(private val handler : BrowseEventHandler) : ListAdapter<Quote, QuoteAdapter.ViewHolder>(QuoteDiffCallback()) {
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     // Bind the current item to the view holder
     val item = getItem(position)
-    holder.bind(item)
+    holder.bind(item, handler)
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,10 +32,21 @@ class QuoteAdapter : ListAdapter<Quote, QuoteAdapter.ViewHolder>(QuoteDiffCallba
       }
     }
 
-    fun bind(item: Quote) {
-      binding.quoteTextFromDb.text = item.quoteText
-      binding.quoteTextFromDb.setBackgroundColor(item.bgColor)
-      binding.quoteTextFromDb.setTextColor(item.txtColor)
+    fun bind(item: Quote, handler: BrowseEventHandler) {
+      binding.apply {
+        quoteTextFromDb.text = item.quoteText
+        quoteTextFromDb.setBackgroundColor(item.bgColor)
+        quoteTextFromDb.setTextColor(item.txtColor)
+        quoteDelete.setOnClickListener() {
+          handler.handleDelete(item)
+        }
+        quoteDownload.setOnClickListener() {
+          handler.handleDownload(quoteTextFromDb, item.fileName)
+        }
+        quoteShare.setOnClickListener() {
+          handler.handleShare(quoteTextFromDb, item.fileName)
+        }
+      }
     }
   }
 
