@@ -28,7 +28,7 @@ class BrowseEventHandler(private val activity : FragmentActivity,
     DOWNLOADED(R.string.status_downloaded),
     SHARED(R.string.status_shared),
     EXISTS(R.string.status_exists),
-    NO_PERMISSIONS(R.string.status_no_permissions),
+    NO_PERMISSIONS(R.string.permissions_warning),
     ERROR(R.string.status_error)
   }
 
