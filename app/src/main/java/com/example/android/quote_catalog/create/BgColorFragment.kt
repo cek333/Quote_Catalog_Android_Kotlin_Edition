@@ -46,9 +46,10 @@ class BgColorFragment : Fragment() {
       // Select the chip that corresponds to currentBgColor
       val selectedChip = getView()?.findViewById<Chip>(checkedId) as Chip
       val selectedColor = selectedChip.chipBackgroundColor?.defaultColor ?: DEFAULT_BG_COLOR
-      val action = BgColorFragmentDirections.actionBgColorFragmentToCreateFragment(args.bundleQuoteTxt)
+      val action = BgColorFragmentDirections.actionBgColorFragmentToCreateFragment()
       action.bundleBgColor = selectedColor
       action.bundleTxtColor = args.bundleTxtColor
+      action.bundleQuoteTxt = args.bundleQuoteTxt
       findNavController().navigate(action)
     }
   }

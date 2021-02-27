@@ -37,7 +37,7 @@
         <argument
             android:name="bundleQuoteTxt"
             app:argType="string"
-            app:nullable="true" />
+            android:defaultValue="" />
     </fragment>
     <fragment
         android:id="@+id/BgColorFragment"
@@ -59,7 +59,7 @@
         <argument
             android:name="bundleQuoteTxt"
             app:argType="string"
-            app:nullable="true" />
+            android:defaultValue="" />
     </fragment>
     <fragment
         android:id="@+id/TxtColorFragment"
@@ -81,6 +81,6 @@
         <argument
             android:name="bundleQuoteTxt"
             app:argType="string"
-            app:nullable="true" />
+            android:defaultValue="" />
     </fragment>
 </navigation>

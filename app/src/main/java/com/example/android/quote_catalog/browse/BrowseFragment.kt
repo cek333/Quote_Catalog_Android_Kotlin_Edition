@@ -52,7 +52,7 @@ class BrowseFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     binding.browseBtnAddQuote.setOnClickListener {
-      findNavController().navigate(BrowseFragmentDirections.actionBrowseFragmentToCreateFragment(null))
+      findNavController().navigate(BrowseFragmentDirections.actionBrowseFragmentToCreateFragment())
     }
 
     binding.browseBtnSearch.setOnClickListener {

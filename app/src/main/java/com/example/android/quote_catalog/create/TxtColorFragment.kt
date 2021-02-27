@@ -50,9 +50,10 @@ class TxtColorFragment : Fragment() {
             // Select the chip that corresponds to currentBgColor
             val selectedChip = getView()?.findViewById<Chip>(checkedId) as Chip
             val selectedColor = selectedChip.chipBackgroundColor?.defaultColor ?: DEFAULT_TXT_COLOR
-            val action = TxtColorFragmentDirections.actionTxtColorFragmentToCreateFragment(args.bundleQuoteTxt)
+            val action = TxtColorFragmentDirections.actionTxtColorFragmentToCreateFragment()
             action.bundleTxtColor = selectedColor
             action.bundleBgColor = args.bundleBgColor
+            action.bundleQuoteTxt = args.bundleQuoteTxt
             findNavController().navigate(action)
         }
     }

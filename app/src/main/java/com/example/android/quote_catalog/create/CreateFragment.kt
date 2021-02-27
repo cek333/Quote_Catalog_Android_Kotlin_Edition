@@ -53,7 +53,7 @@ class CreateFragment : Fragment() {
     // Apply color to button
     binding.createTxtColorSelect.setBackgroundColor(currentTxtColor)
 
-    val currentQuoteTxt : String? = args.bundleQuoteTxt
+    val currentQuoteTxt = args.bundleQuoteTxt
 
     binding.apply {
       // Log.i("CreateFragment", "bg color:${currentBgColor.toString()}")
@@ -61,7 +61,7 @@ class CreateFragment : Fragment() {
       // Configure colours for quote box
       quoteText.setBackgroundColor(currentBgColor)
       quoteText.setTextColor(currentTxtColor)
-      currentQuoteTxt?.let { quoteText.setText(it) }
+      quoteText.setText(currentQuoteTxt)
 
       // Attach listener to Save button
       createSave.setOnClickListener {
@@ -74,18 +74,18 @@ class CreateFragment : Fragment() {
 
       // Attach listeners to colour pickers
       createBgColorSelect.setOnClickListener {
-        val txt = binding.quoteText.text.toString()
-        val action = CreateFragmentDirections.actionCreateFragmentToBgColorFragment(txt)
+        val action = CreateFragmentDirections.actionCreateFragmentToBgColorFragment()
         action.bundleBgColor = currentBgColor
         action.bundleTxtColor = currentTxtColor
+        action.bundleQuoteTxt = binding.quoteText.text.toString()
         findNavController().navigate(action)
       }
 
       createTxtColorSelect.setOnClickListener {
-        val txt = binding.quoteText.text.toString()
-        val action = CreateFragmentDirections.actionCreateFragmentToTxtColorFragment(txt)
+        val action = CreateFragmentDirections.actionCreateFragmentToTxtColorFragment()
         action.bundleBgColor = currentBgColor
         action.bundleTxtColor = currentTxtColor
+        action.bundleQuoteTxt = binding.quoteText.text.toString()
         findNavController().navigate(action)
       }
     }
