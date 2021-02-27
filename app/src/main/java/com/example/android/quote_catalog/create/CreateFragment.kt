@@ -9,8 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.android.quote_catalog.*
+import com.example.android.quote_catalog.DEFAULT_BG_COLOR
+import com.example.android.quote_catalog.DEFAULT_TXT_COLOR
+import com.example.android.quote_catalog.R
 import com.example.android.quote_catalog.databinding.FragmentCreateBinding
+import com.example.android.quote_catalog.hideKeyboardFrom
 import com.example.android.quote_catalog.store.QuoteDatabase
 
 class CreateFragment : Fragment() {
@@ -41,15 +44,16 @@ class CreateFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    currentBgColor = arguments?.getInt(BUNDLE_BG_COLOR) ?: currentBgColor
+    val args = CreateFragmentArgs.fromBundle(requireArguments())
+    currentBgColor = args.bundleBgColor
     // Apply color to button
     binding.createBgColorSelect.setBackgroundColor(currentBgColor)
 
-    currentTxtColor = arguments?.getInt(BUNDLE_TXT_COLOR) ?: currentTxtColor
+    currentTxtColor = args.bundleTxtColor
     // Apply color to button
     binding.createTxtColorSelect.setBackgroundColor(currentTxtColor)
 
-    val currentQuoteTxt = arguments?.getString(BUNDLE_QUOTE_TXT) ?: ""
+    val currentQuoteTxt : String? = args.bundleQuoteTxt
 
     binding.apply {
       // Log.i("CreateFragment", "bg color:${currentBgColor.toString()}")
@@ -57,7 +61,7 @@ class CreateFragment : Fragment() {
       // Configure colours for quote box
       quoteText.setBackgroundColor(currentBgColor)
       quoteText.setTextColor(currentTxtColor)
-      quoteText.setText(currentQuoteTxt)
+      currentQuoteTxt?.let { quoteText.setText(it) }
 
       // Attach listener to Save button
       createSave.setOnClickListener {
@@ -70,22 +74,30 @@ class CreateFragment : Fragment() {
 
       // Attach listeners to colour pickers
       createBgColorSelect.setOnClickListener {
-        findNavController().navigate(R.id.action_CreateFragment_to_BgColorFragment, createBundle())
+        val txt = binding.quoteText.text.toString()
+        val action = CreateFragmentDirections.actionCreateFragmentToBgColorFragment(txt)
+        action.bundleBgColor = currentBgColor
+        action.bundleTxtColor = currentTxtColor
+        findNavController().navigate(action)
       }
 
       createTxtColorSelect.setOnClickListener {
-        findNavController().navigate(R.id.action_CreateFragment_to_TxtColorFragment, createBundle())
+        val txt = binding.quoteText.text.toString()
+        val action = CreateFragmentDirections.actionCreateFragmentToTxtColorFragment(txt)
+        action.bundleBgColor = currentBgColor
+        action.bundleTxtColor = currentTxtColor
+        findNavController().navigate(action)
       }
     }
   }
 
-  private fun createBundle() : Bundle {
-    val localBundle = Bundle()
-    localBundle.apply {
-      putInt(BUNDLE_BG_COLOR, currentBgColor)
-      putInt(BUNDLE_TXT_COLOR, currentTxtColor)
-      putString(BUNDLE_QUOTE_TXT, binding.quoteText.text.toString())
-    }
-    return localBundle
-  }
+//  private fun createBundle() : Bundle {
+//    val localBundle = Bundle()
+//    localBundle.apply {
+//      putInt(BUNDLE_BG_COLOR, currentBgColor)
+//      putInt(BUNDLE_TXT_COLOR, currentTxtColor)
+//      putString(BUNDLE_QUOTE_TXT, binding.quoteText.text.toString())
+//    }
+//    return localBundle
+//  }
 }

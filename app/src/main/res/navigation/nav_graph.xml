@@ -26,6 +26,18 @@
         <action
             android:id="@+id/action_CreateFragment_to_TxtColorFragment"
             app:destination="@id/TxtColorFragment" />
+        <argument
+            android:name="bundleBgColor"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="bundleTxtColor"
+            app:argType="integer"
+            android:defaultValue="-16777216" />
+        <argument
+            android:name="bundleQuoteTxt"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/BgColorFragment"
@@ -36,6 +48,18 @@
             android:id="@+id/action_BgColorFragment_to_CreateFragment"
             app:destination="@id/CreateFragment"
             app:popUpTo="@id/BrowseFragment" />
+        <argument
+            android:name="bundleBgColor"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="bundleTxtColor"
+            app:argType="integer"
+            android:defaultValue="-16777216" />
+        <argument
+            android:name="bundleQuoteTxt"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/TxtColorFragment"
@@ -46,5 +70,17 @@
             android:id="@+id/action_TxtColorFragment_to_CreateFragment"
             app:destination="@id/CreateFragment"
             app:popUpTo="@id/BrowseFragment" />
+        <argument
+            android:name="bundleBgColor"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="bundleTxtColor"
+            app:argType="integer"
+            android:defaultValue="-16777216" />
+        <argument
+            android:name="bundleQuoteTxt"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

@@ -8,7 +8,6 @@ import androidx.core.view.iterator
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.android.quote_catalog.BUNDLE_BG_COLOR
 import com.example.android.quote_catalog.DEFAULT_BG_COLOR
 import com.example.android.quote_catalog.R
 import com.example.android.quote_catalog.databinding.FragmentBgColorBinding
@@ -30,10 +29,8 @@ class BgColorFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    val localBundle = Bundle(arguments)
-    var currentBgColor = DEFAULT_BG_COLOR
-
-    currentBgColor = localBundle.getInt(BUNDLE_BG_COLOR) ?: currentBgColor
+    val args = BgColorFragmentArgs.fromBundle(requireArguments())
+    val currentBgColor = args.bundleBgColor
 
     // Select the chip that corresponds to currentBgColor
     for (view in binding.bgColors) {
@@ -49,8 +46,10 @@ class BgColorFragment : Fragment() {
       // Select the chip that corresponds to currentBgColor
       val selectedChip = getView()?.findViewById<Chip>(checkedId) as Chip
       val selectedColor = selectedChip.chipBackgroundColor?.defaultColor ?: DEFAULT_BG_COLOR
-      localBundle.putInt(BUNDLE_BG_COLOR, selectedColor)
-      findNavController().navigate(R.id.action_BgColorFragment_to_CreateFragment, localBundle)
+      val action = BgColorFragmentDirections.actionBgColorFragmentToCreateFragment(args.bundleQuoteTxt)
+      action.bundleBgColor = selectedColor
+      action.bundleTxtColor = args.bundleTxtColor
+      findNavController().navigate(action)
     }
   }
 }
