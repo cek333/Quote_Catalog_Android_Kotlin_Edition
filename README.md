@@ -29,7 +29,7 @@ On the 'Create Quote' page you can write a new quote.
 ![Background Colour Selection](readme/create_pick_background_colour_qc.png)
 ![Text Colour Selection](readme/create_pick_text_colour_qc.png)
 
-Enter your quote in the text box. Click on the 'Change ... Colour' boxes to select a new text or background colour. When complete press 'Save Quote'. To navigate back to the Browse page, use the Up button in the AppBar or your phone's Back button.
+Enter your quote in the text box. Click on the 'Change ... Colour' boxes to select a new text or background colour. When complete press 'Save Quote'. To navigate back to the Browse page, use the Up button in the ActionBar or your phone's Back button.
 
 # Technical Details
 The app was written in Kotlin and built with Android Studio 4.1.2.
