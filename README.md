@@ -1,7 +1,7 @@
 # Quote Catalog Android Kotlin Edition
 This app is an Android variation of my MERN full stack application, [Quote Catalog](https://github.com/cek333/Quote_Catalog).
 
-Use the application to create images (of a text message or quote), as well as browse, search, download, share, and delete images.
+Use the application to create images (of a text quote), as well as browse, search, download, share, and delete images.
 
 ## Usage
 ### Browse Images
